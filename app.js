@@ -184,7 +184,27 @@ function update() {
   getDocuments(dataUrl, attrs, metadata, group, notes);
 }
 
+function tag() {
+  var id = document.getElementById("tag_id").value;
+  const url = `https://api.www.documentcloud.org/api/documents/${id}/date/test_key/`;
+  fetch(url, {
+    method: "PUT",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({"values": ["test_value"]})
+  }).then((response) => {
+      if (response.ok) {
+        document.getElementById("tag_txt").innerHTML = "it worked";
+      } else {
+        document.getElementById("tag_txt").innerHTML = "something went wrong";
+      }
+    }).catch((err) => document.getElementById("auth").innerHTML = "something went wrong");
+}
+
 document.getElementById("update").addEventListener("click", update);
+document.getElementById("tag").addEventListener("click", tag);
 
 loadHash();
 getUserId();
