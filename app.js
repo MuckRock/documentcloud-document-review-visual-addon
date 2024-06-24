@@ -186,7 +186,7 @@ function update() {
 
 function tag() {
   var id = document.getElementById("tag_id").value;
-  const url = `https://api.www.documentcloud.org/api/documents/${id}/date/test_key/`;
+  const url = `https://api.www.documentcloud.org/api/documents/${id}/data/test_key/`;
   fetch(url, {
     method: "PUT",
     credentials: "include",
