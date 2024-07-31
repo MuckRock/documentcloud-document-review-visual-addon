@@ -187,10 +187,12 @@ function update() {
 function tag() {
   var id = document.getElementById("tag_id").value;
   const url = `https://api.www.documentcloud.org/api/documents/${id}/data/test_key/`;
+  const token = ('; '+document.cookie).split(`; csrftoken=`).pop().split(';')[0];
   fetch(url, {
     method: "PUT",
     credentials: "include",
     headers: {
+      "X-CSRFToken": token,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({"values": ["test_value"]})
